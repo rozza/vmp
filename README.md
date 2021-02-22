@@ -24,5 +24,5 @@ application {
 ---
 Why does my code reformat?
 
-Uses [spotless](https://github.com/diffplug/spotless/tree/main/plugin-gradle) for auto linting of code.  
+Uses [spotless](https://github.com/diffplug/spotless/tree/main/plugin-gradle) for auto linting of code.
 See the spotless config in the build.gradle.kts
