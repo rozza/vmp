@@ -16,7 +16,7 @@ The main routes are configured by:
 
 ```
 application {
-  mainClass.set("org.mongo.visualmongopro.KMainKt")
+  mainClass.set("org.mongo.visualmongopro.MainKt")
 }
 ```
 
