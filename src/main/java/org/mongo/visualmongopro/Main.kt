@@ -11,7 +11,6 @@ fun main() {
 
   app.routes {
     get("/hello") { ctx -> ctx.result("Hello World") }
-
     crud("/forms/:form-id", FormsController())
   }
 

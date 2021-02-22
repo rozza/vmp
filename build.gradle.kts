@@ -34,7 +34,7 @@ application {
 }
 
 dependencies {
-  api("io.javalin:javalin:3.13.3")
+  implementation("io.javalin:javalin:3.13.3")
 
   implementation("org.mongodb:mongodb-driver-sync:4.2.1")
   implementation("ch.qos.logback:logback-classic:1.1.1")
@@ -80,12 +80,4 @@ spotless {
     indentWithSpaces()
     endWithNewline()
   }
-}
-
-tasks.named("compileKotlin") {
-  dependsOn(":spotlessApply")
-}
-
-tasks.named("compileJava") {
-  dependsOn(":spotlessApply")
 }
