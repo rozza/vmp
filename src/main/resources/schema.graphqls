@@ -1,12 +1,19 @@
+scalar DateTime
+scalar Decimal128
+
 type Query {
+  books: [Book]
   bookById(id: ID): Book
+  booksByPrice(lessThan: Decimal128) : [Book]
 }
 
 type Book {
   id: ID
   name: String
+  publicationDate: DateTime
+  price: Decimal128
   pageCount: Int
-  author: Author
+  authors: [Author]
 }
 
 type Author {
