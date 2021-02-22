@@ -36,7 +36,10 @@ application {
 dependencies {
   api("com.sparkjava:spark-core:2.9.3")
   api("com.sparkjava:spark-kotlin:1.0.0-alpha")
+
+  implementation("org.mongodb:mongodb-driver-sync:4.2.0")
   implementation("org.slf4j:slf4j-simple:1.7.21")
+
 
   // Use JUnit Jupiter API for testing.
   testImplementation("org.junit.jupiter:junit-jupiter-api:5.4.2")
