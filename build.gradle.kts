@@ -17,10 +17,13 @@
 plugins {
   // Apply the java plugin to add support for Java
   java
+  application
   kotlin("jvm") version "1.4.30"
 
   id("com.diffplug.spotless") version "5.10.0"
-  application
+
+  id("org.springframework.boot") version "2.4.3"
+  id("io.spring.dependency-management") version "1.0.11.RELEASE"
 }
 
 repositories {
@@ -30,14 +33,21 @@ repositories {
 }
 
 application {
-  mainClass.set("org.mongo.visualmongopro.MainKt")
+  mainClass.set("org.mongo.visualmongopro.VisualMongoDbProApplication")
 }
 
 dependencies {
-  implementation("io.javalin:javalin:3.13.3")
-
   implementation("org.mongodb:mongodb-driver-sync:4.2.1")
-  implementation("ch.qos.logback:logback-classic:1.1.1")
+  implementation("org.mongodb:mongodb-driver-core:4.2.1")
+  implementation("org.mongodb:bson:4.2.1")
+
+  implementation("com.graphql-java:graphql-java:16.2")
+  implementation("com.graphql-java:graphql-java-extended-scalars:16.0.0")
+  implementation("com.graphql-java:graphql-java-spring-boot-starter-webmvc:2.0")
+  implementation("com.google.guava:guava:26.0-jre")
+  implementation("org.springframework.boot:spring-boot-starter-web")
+
+  testImplementation("org.springframework.boot:spring-boot-starter-test")
 
   // Use JUnit Jupiter API for testing.
   testImplementation("org.junit.jupiter:junit-jupiter-api:5.4.2")
