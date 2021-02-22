@@ -3,13 +3,15 @@ package org.mongo.visualmongopro
 import io.javalin.Javalin
 import io.javalin.apibuilder.ApiBuilder.get
 import io.javalin.apibuilder.ApiBuilder.path
+import io.javalin.core.util.RouteOverviewPlugin
 import org.mongo.visualmongopro.ross.FormsEndPoint
 
 fun main() {
 
-  val app = Javalin.create().start()
-
-  app.config.enableDevLogging()
+  val app = Javalin.create { config ->
+    config.registerPlugin(RouteOverviewPlugin("/")) // Shows all routes on "/"
+    config.enableDevLogging() // Noisy debug logging - might be helpful
+  }.start()
 
   app.routes {
     get("/hello") { ctx -> ctx.result("Hello World") }

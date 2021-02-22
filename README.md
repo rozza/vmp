@@ -1,12 +1,12 @@
-# Viz MongoDB Pro
+# Visual MongoDB Pro
 
-Its a **Pro**totype with a loosely defined scope.
+Its a **Pro**totype with a very loosely defined scope.
 
 ```
 ./gradlew run
 ```
 
-http://localhost:7000/hello
+http://localhost:7000/
 
 
 ---
