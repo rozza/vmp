@@ -26,3 +26,6 @@ Why does my code reformat?
 
 Uses [spotless](https://github.com/diffplug/spotless/tree/main/plugin-gradle) for auto linting of code.
 See the spotless config in the build.gradle.kts
+
+Git pre-commit hook to run spotless can be found in ./config/git-pre-commit
+`ln -s ./config/git-pre-commit ./.git/hooks/pre-commit`
