@@ -36,7 +36,7 @@ application {
 dependencies {
   api("io.javalin:javalin:3.13.3")
 
-  implementation("org.mongodb:mongodb-driver-sync:4.2.0")
+  implementation("org.mongodb:mongodb-driver-sync:4.2.1")
   implementation("org.slf4j:slf4j-simple:1.7.21")
 
   // Use JUnit Jupiter API for testing.
