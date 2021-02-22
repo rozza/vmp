@@ -1,12 +1,10 @@
 package org.mongo.visualmongopro
 
-import spark.kotlin.Http
-import spark.kotlin.ignite
+import io.javalin.Javalin
 
 fun main() {
-  val http: Http = ignite()
+  val app = Javalin.create().start()
+  app.get("/hello") { ctx -> ctx.result("Hello World") }
 
-  http.get("/hello") {
-    "Hello Spark Kotlin!"
-  }
+  Runtime.getRuntime().addShutdownHook(Thread { app.stop() })
 }

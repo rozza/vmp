@@ -34,8 +34,7 @@ application {
 }
 
 dependencies {
-  api("com.sparkjava:spark-core:2.9.3")
-  api("com.sparkjava:spark-kotlin:1.0.0-alpha")
+  api("io.javalin:javalin:3.13.3")
 
   implementation("org.mongodb:mongodb-driver-sync:4.2.0")
   implementation("org.slf4j:slf4j-simple:1.7.21")
