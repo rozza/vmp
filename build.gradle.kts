@@ -15,37 +15,76 @@
  */
 
 plugins {
-    // Apply the java plugin to add support for Java
-    java
-    kotlin("jvm") version "1.4.30"
+  // Apply the java plugin to add support for Java
+  java
+  kotlin("jvm") version "1.4.30"
 
-    application
+  id("com.diffplug.spotless") version "5.10.0"
+  application
 }
 
 repositories {
-    // Use jcenter for resolving dependencies.
-    // You can declare any Maven/Ivy/file repository here.
-    jcenter()
+  // Use jcenter for resolving dependencies.
+  // You can declare any Maven/Ivy/file repository here.
+  jcenter()
 }
-
-
 
 application {
-    mainClass.set("org.mongo.visualmongopro.Main")
+  mainClass.set("org.mongo.visualmongopro.KMainKt")
 }
 
-
 dependencies {
-    api("com.sparkjava:spark-core:2.9.3")
-    api("com.sparkjava:spark-kotlin:1.0.0-alpha")
-    implementation("org.slf4j:slf4j-simple:1.7.21")
+  api("com.sparkjava:spark-core:2.9.3")
+  api("com.sparkjava:spark-kotlin:1.0.0-alpha")
+  implementation("org.slf4j:slf4j-simple:1.7.21")
 
-    // Use JUnit Jupiter API for testing.
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.4.2")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.4.2")
+  // Use JUnit Jupiter API for testing.
+  testImplementation("org.junit.jupiter:junit-jupiter-api:5.4.2")
+  testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.4.2")
 }
 
 val test by tasks.getting(Test::class) {
-    // Use junit platform for unit tests
-    useJUnitPlatform()
+  // Use junit platform for unit tests
+  useJUnitPlatform()
+}
+
+// Spotless is used to lint and reformat source files.
+spotless {
+  java {
+    googleJavaFormat()
+    importOrder("java", "io", "org", "org.bson", "com.mongodb", "")
+    removeUnusedImports() // removes any unused imports
+    trimTrailingWhitespace()
+    endWithNewline()
+    indentWithSpaces()
+  }
+
+  kotlin {
+    ktlint("0.37.2").userData(mapOf("indent_size" to "2", "continuation_indent_size" to "2"))
+    trimTrailingWhitespace()
+    indentWithSpaces()
+    endWithNewline()
+  }
+
+  kotlinGradle {
+    ktlint("0.37.2").userData(mapOf("indent_size" to "2", "continuation_indent_size" to "2"))
+    trimTrailingWhitespace()
+    indentWithSpaces()
+    endWithNewline()
+  }
+
+  format("extraneous") {
+    target("*.xml", "*.yml", "*.md")
+    trimTrailingWhitespace()
+    indentWithSpaces()
+    endWithNewline()
+  }
+}
+
+tasks.named("compileKotlin") {
+  dependsOn(":spotlessApply")
+}
+
+tasks.named("compileJava") {
+  dependsOn(":spotlessApply")
 }
