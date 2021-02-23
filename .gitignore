@@ -33,5 +33,7 @@ local.properties
 node_modules/
 
 ### Frontend Bundle ###
-src/main/resources/static/*
-src/main/resources/templates/*
+backend/src/main/resources/static/*
+backend/src/main/resources/templates/*
+
+

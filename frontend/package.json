@@ -1,0 +1,34 @@
+{
+  "name": "frontend",
+  "main": "src/index.js",
+  "private": true,
+  "scripts": {
+    "build": "BABEL_ENV=production webpack --mode=production",
+    "start": "BABEL_ENV=development webpack --mode=development --watch",
+    "test": "jest"
+  },
+  "engines": {
+    "npm": ">=6.9.0",
+    "node": ">=12.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "@babel/preset-react": "^7.7.4",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "babel-jest": "^24.9.0",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-styled-components": "^1.10.6",
+    "clean-webpack-plugin": "^3.0.0",
+    "html-webpack-plugin": "^4.0.0-beta.11",
+    "jest": "^24.9.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  },
+  "dependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "styled-components": "^4.4.1"
+  }
+}
