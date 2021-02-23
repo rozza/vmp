@@ -2,22 +2,27 @@
 
 Its a **Pro**totype with a very loosely defined scope.
 
+
+## To run it
 ```
 ./gradlew run
 ```
 
 http://localhost:8080
 
-
----
-
 Can use Java or Kotlin code.
 
 The main routes are configured by the spring framework
 
+## Structure
 
----
-Why does my code reformat?
+ * frontend - the react frontend
+ * backend - the spring framework backend
+
+Currently, the react frontendf merges into backend/resources/static because its easier than running two web servers.
+
+
+#### Why does my code reformat?
 
 Uses [spotless](https://github.com/diffplug/spotless/tree/main/plugin-gradle) for auto linting of code.
 See the spotless config in the build.gradle.kts
