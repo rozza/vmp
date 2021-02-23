@@ -14,8 +14,9 @@ const schema = {
   }
 };
 
-const CustomForm = () => (
-  <Form schema={schema} />
-);
+export default function CustomForm() {
+  return (
+    <Form schema={schema} />
+  );
+}
 
-export default CustomForm;

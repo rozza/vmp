@@ -1,16 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Header from './components/Header';
-import CustomForm from './components/Forms';
-
+import CenteredGrid from './components/Grids';
 
 ReactDOM.render(
-  <Header />,
-  document.getElementById('header')
+  <CenteredGrid />,
+  document.getElementById('root')
 );
 
-ReactDOM.render(
-  <CustomForm />,
-  document.getElementById('forms')
-);
