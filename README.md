@@ -6,20 +6,14 @@ Its a **Pro**totype with a very loosely defined scope.
 ./gradlew run
 ```
 
-http://localhost:7000/
+http://localhost:8080
 
 
 ---
 
 Can use Java or Kotlin code.
 
-The main routes are configured by:
-
-```
-application {
-  mainClass.set("org.mongo.visualmongopro.MainKt")
-}
-```
+The main routes are configured by the spring framework
 
 
 ---

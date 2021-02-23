@@ -1,4 +1,4 @@
-package org.mongo.visualmongopro.codecs;
+package org.mongo.visualmongopro.graphql.codecs;
 
 import java.time.Instant;
 import java.time.OffsetDateTime;
