@@ -27,6 +27,18 @@ Currently, the react frontend merges into backend/resources/static because its e
  * Start Gradle bootRun task: ./gradlew run`
  * Start build the react stuff: `./gradlew frontendBuild` - it will reload
 
+The graphql entry point is at the URI path `/graphql` The GraphQL schema is in `src/main/resources/schema.graphqls`.
+
+The best way to interact with the GraphQL data services is with a dedicated HTTP client that is GraphQL-aware.  Two possibilities are:
+
+* https://github.com/graphql/graphql-playground.  I (Jeff) had a bit of trouble figuring out how to run the desktop version of this on OS X
+  after
+  installation via brew, but it's possible.
+* https://www.postman.com/product/rest-client/.  This is the one that Maxime uses.
+
+The MongoDB connection string defaults to mongodb://localhost:27017 but can be overridden via the `MONGODB_URI` environment variable.
+See the `MongoClientAppConfig` class if you want to see how that's done or play around with alternatives.
+
 #### Why does my code reformat?
 
 Uses [spotless](https://github.com/diffplug/spotless/tree/main/plugin-gradle) for auto linting of code.
