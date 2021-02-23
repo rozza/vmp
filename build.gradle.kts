@@ -26,8 +26,9 @@ tasks.register("run") {
 
 allprojects {
   repositories {
-    // Use jcenter for resolving dependencies.
-    // You can declare any Maven/Ivy/file repository here.
+    mavenCentral()
+    maven(url = "http://repo.spring.io/release")
+    maven(url = "http://repo.spring.io/milestone")
     jcenter()
   }
 }

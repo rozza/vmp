@@ -34,6 +34,9 @@ dependencies {
   implementation("com.graphql-java:graphql-java-spring-boot-starter-webmvc:2.0")
   implementation("com.google.guava:guava:26.0-jre")
   implementation("org.springframework.boot:spring-boot-starter-web")
+  implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
+
+  runtimeOnly("org.springframework.boot:spring-boot-devtools")
 
   testImplementation("org.springframework.boot:spring-boot-starter-test")
 
@@ -41,6 +44,7 @@ dependencies {
   testImplementation("org.junit.jupiter:junit-jupiter-api:5.4.2")
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.4.2")
 }
+
 
 val test by tasks.getting(Test::class) {
   // Use junit platform for unit tests

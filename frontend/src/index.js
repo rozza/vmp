@@ -1,9 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import App from './components/App';
+import Header from './components/Header';
+import CustomForm from './components/Forms';
+
 
 ReactDOM.render(
-  <App />,
-  document.getElementById('root')
+  <Header />,
+  document.getElementById('header')
+);
+
+ReactDOM.render(
+  <CustomForm />,
+  document.getElementById('forms')
 );

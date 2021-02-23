@@ -19,8 +19,13 @@ The main routes are configured by the spring framework
  * frontend - the react frontend
  * backend - the spring framework backend
 
-Currently, the react frontendf merges into backend/resources/static because its easier than running two web servers.
+Currently, the react frontend merges into backend/resources/static because its easier than running two web servers.
 
+### Continuous build
+
+ * Start Gradle build as a continuous task: `./gradlew build --continuous`
+ * Start Gradle bootRun task: ./gradlew run`
+ * Start build the react stuff: `./gradlew frontendBuild` - it will reload
 
 #### Why does my code reformat?
 

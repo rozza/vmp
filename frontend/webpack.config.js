@@ -31,7 +31,7 @@ module.exports = (env, argv) => ({
     new HtmlWebpackPlugin({
       hash: true,
       template: './src/index.html',
-      filename: path.join(resources, 'static', 'index.html')
+      filename: path.join(resources, 'templates', 'index.html')
     })
   ]
 });
