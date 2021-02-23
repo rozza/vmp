@@ -17,7 +17,7 @@
 plugins {
   // Apply the java plugin to add support for Java
   java
-  application
+
   kotlin("jvm") version "1.4.30"
 
   id("com.diffplug.spotless") version "5.10.0"
@@ -30,10 +30,6 @@ repositories {
   // Use jcenter for resolving dependencies.
   // You can declare any Maven/Ivy/file repository here.
   jcenter()
-}
-
-application {
-  mainClass.set("org.mongo.visualmongopro.VisualMongoDbProApplication")
 }
 
 dependencies {
@@ -90,4 +86,8 @@ spotless {
     indentWithSpaces()
     endWithNewline()
   }
+}
+
+tasks.register("run") {
+  dependsOn("bootRun")
 }
