@@ -27,6 +27,7 @@ public class GraphQLProvider {
 
   private GraphQL graphQL;
   @Autowired GraphQLDataFetchers graphQLDataFetchers;
+  @Autowired CollectionDataFetcher collectionDataFetchers;
 
   @Bean
   public GraphQL graphQL() {
@@ -60,6 +61,7 @@ public class GraphQLProvider {
                         + "supporting 34 decimal digits of significand and an exponent range * of -6143 to +6144")
                 .coercing(new Decimal128StringCoercing())
                 .build())
+        // These are just testing... ignore
         .type(
             newTypeWiring("Query").dataFetcher("books", graphQLDataFetchers.getBooksDataFetcher()))
         .type(
@@ -68,6 +70,19 @@ public class GraphQLProvider {
         .type(
             newTypeWiring("Query")
                 .dataFetcher("booksByPrice", graphQLDataFetchers.getBooksByPriceDataFetcher()))
+
+        .type(
+            newTypeWiring("Query")
+              .dataFetcher("collections", collectionDataFetchers.getCollectionsDataFetcher())
+        )
+        .type(
+            newTypeWiring("Query")
+                .dataFetcher("collectionsByDatabase", collectionDataFetchers.getCollectionsByDatabaseDataFetcher())
+        )
+        .type(
+            newTypeWiring("Query")
+                .dataFetcher("collectionByNamespace", collectionDataFetchers.getCollectionsByNamespaceDataFetcher())
+        )
         .build();
   }
 }
