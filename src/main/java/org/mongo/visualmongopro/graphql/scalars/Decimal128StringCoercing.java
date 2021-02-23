@@ -1,4 +1,4 @@
-package org.mongo.visualmongopro.scalars;
+package org.mongo.visualmongopro.graphql.scalars;
 
 import org.bson.types.Decimal128;
 

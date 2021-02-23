@@ -5,20 +5,20 @@ Its a **Pro**totype with a loosely defined scope.
 
 ./gradlew run
 
-http://localhost:4567/hello
+This branch uses a Java implementation of GraphQL and is based off a tutorial at 
+https://www.graphql-java.com/tutorials/getting-started-with-spring-boot/ that has been modified to use MongoDB.
 
+As it's Spring Boot, the default is to start up a server on http://localhost:8080, though of course this can be changed.
 
----
+The graphql entry point is at the URI path `/graphql`
 
-Can use Java or Kotlin code.
+The best way to interact with the GraphQL data services is with a dedicated HTTP client that is GraphQL aware.  Two possibilities are:
 
-The main routes are configured by:
+* https://github.com/graphql/graphql-playground.  I (Jeff) had a bit of trouble figuring out how to run the desktop version of this on OS X 
+  after 
+  installation via brew, but it's possible.
+* https://www.postman.com/product/rest-client/.  This is the one that Maxime uses.  
 
-```
-application {
-  mainClass.set("org.mongo.visualmongopro.MainKt")
-}
-```
 
 
 ---

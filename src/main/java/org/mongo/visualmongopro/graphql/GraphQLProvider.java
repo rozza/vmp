@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.net.URL;
 import javax.annotation.PostConstruct;
 
-import org.mongo.visualmongopro.scalars.Decimal128StringCoercing;
+import org.mongo.visualmongopro.graphql.scalars.Decimal128StringCoercing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
@@ -66,7 +66,7 @@ public class GraphQLProvider {
             newTypeWiring("Query")
                 .dataFetcher("bookById", graphQLDataFetchers.getBookByIdDataFetcher()))
         .type(
-            newTypeWiring("Query")
+            newTypeWiring("Queryable")
                 .dataFetcher("booksByPrice", graphQLDataFetchers.getBooksByPriceDataFetcher()))
         .build();
   }

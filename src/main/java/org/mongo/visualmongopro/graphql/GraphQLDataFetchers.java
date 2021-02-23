@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
 
-import org.mongo.visualmongopro.codecs.OffsetDateTimeCodec;
+import org.mongo.visualmongopro.graphql.codecs.OffsetDateTimeCodec;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
