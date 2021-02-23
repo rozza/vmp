@@ -19,7 +19,8 @@ The best way to interact with the GraphQL data services is with a dedicated HTTP
   installation via brew, but it's possible.
 * https://www.postman.com/product/rest-client/.  This is the one that Maxime uses.  
 
-
+The MongoDB connection string defaults to mongodb://localhost:27017 but can be overridden via the `MONGODB_URI` environment variable. 
+See the `MongoClientAppConfig` class if you want to see how that's done or play around with alternatives.
 
 ---
 Why does my code reformat?
