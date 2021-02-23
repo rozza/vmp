@@ -14,10 +14,22 @@
  * limitations under the License.
  */
 
-buildscript { repositories { jcenter() } }
+buildscript {
+  repositories {
+    jcenter()
+  }
+}
 
 tasks.register("run") {
   dependsOn(":backend:bootRun")
+}
+
+allprojects {
+  repositories {
+    // Use jcenter for resolving dependencies.
+    // You can declare any Maven/Ivy/file repository here.
+    jcenter()
+  }
 }
 
 plugins {
