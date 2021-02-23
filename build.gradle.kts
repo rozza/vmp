@@ -24,6 +24,11 @@ plugins {
 
   id("org.springframework.boot") version "2.4.3"
   id("io.spring.dependency-management") version "1.0.11.RELEASE"
+  id("cool.william.frontend") version "0.0.15"
+}
+
+tasks.processResources {
+  dependsOn("frontendBuild")
 }
 
 repositories {

@@ -28,3 +28,10 @@ bin
 
 # local settings
 local.properties
+
+### Frontend Dependencies ###
+node_modules/
+
+### Frontend Bundle ###
+src/main/resources/static/*
+src/main/resources/templates/*
