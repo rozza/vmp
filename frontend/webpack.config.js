@@ -6,7 +6,7 @@ const resources = path.resolve(__dirname, '../backend/src/main/resources');
 
 module.exports = (env, argv) => ({
   devtool: argv.mode === 'development' ? 'eval-source-map' : 'none',
-  entry: './src/index.js',
+  entry: './src/index.jsx',
   output: {
     publicPath: '/',
     filename: 'bundle.js',

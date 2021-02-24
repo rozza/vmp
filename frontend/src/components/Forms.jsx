@@ -1,5 +1,9 @@
 import React from 'react';
 import Form from "@rjsf/material-ui";
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import { useStyles } from './styles';
 
 const schema = {
   title: "Test form",
@@ -14,9 +18,19 @@ const schema = {
   }
 };
 
-export default function CustomForm() {
+export default function Forms() {
+  const classes = useStyles();
+
   return (
-    <Form schema={schema} />
+    <Container maxWidth="false" className={classes.container}>
+      <Grid container spacing={3} justify="center">
+          <Grid item xs={12} md={8} lg={12}>
+            <Paper elevation={3}>
+             <Form schema={schema} className={classes.padded}/>
+            </Paper>
+          </Grid>
+      </Grid>
+    </Container>
   );
 }
 
