@@ -37,6 +37,7 @@ dependencies {
   implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 
   runtimeOnly("org.springframework.boot:spring-boot-devtools")
+  runtimeOnly("com.graphql-java-kickstart:graphiql-spring-boot-starter:7.0.1")
 
   testImplementation("org.springframework.boot:spring-boot-starter-test")
 
