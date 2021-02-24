@@ -42,6 +42,9 @@ dependencies {
   // Use JUnit Jupiter API for testing.
   testImplementation("org.junit.jupiter:junit-jupiter-api:5.4.2")
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.4.2")
+
+  testImplementation("com.konghq:unirest-java:3.4.00")
+  testImplementation("org.assertj:assertj-core:3.11.1")
 }
 
 val test by tasks.getting(Test::class) {
