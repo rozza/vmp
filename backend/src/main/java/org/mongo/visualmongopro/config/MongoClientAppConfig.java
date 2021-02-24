@@ -1,5 +1,6 @@
 package org.mongo.visualmongopro.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,9 +15,12 @@ import com.mongodb.client.MongoClients;
 @Configuration
 public class MongoClientAppConfig {
 
-  // I'm not clear how this field can be final and still set by the Value annotation, but it works
-  @Value("#{systemEnvironment['MONGODB_URI']}")
-  private final String uri = "mongodb://localhost";
+  private final String uri;
+
+  @Autowired
+  MongoClientAppConfig(@Value("#{systemEnvironment['MONGODB_URI']}") final String uri) {
+    this.uri = uri;
+  }
 
   @Bean
   public MongoClient mongoClient() {
