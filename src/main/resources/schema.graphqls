@@ -5,6 +5,7 @@ type Query {
   books: [Book]
   bookById(id: ID): Book
   booksByPrice(lessThan: Decimal128) : [Book]
+  createBook(book: BookInput): ID
 }
 
 type Book {
@@ -20,4 +21,11 @@ type Author {
   id: ID
   firstName: String
   lastName: String
+}
+
+input BookInput {
+  name: String
+  publicationDate: DateTime
+  price: Decimal128
+  pageCount: Int
 }

@@ -24,6 +24,7 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import javax.annotation.PostConstruct;
 
 import org.mongo.visualmongopro.graphql.codecs.OffsetDateTimeCodec;
@@ -39,10 +40,17 @@ import org.bson.conversions.Bson;
 import org.bson.types.Decimal128;
 import org.bson.types.ObjectId;
 
+import com.mongodb.ClientSessionOptions;
+import com.mongodb.ReadConcern;
+import com.mongodb.ReadPreference;
+import com.mongodb.TransactionOptions;
+import com.mongodb.WriteConcern;
+import com.mongodb.client.ClientSession;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.result.InsertOneResult;
 
 import graphql.schema.DataFetcher;
 import graphql.schema.DataFetchingFieldSelectionSet;
@@ -50,9 +58,23 @@ import graphql.schema.SelectedField;
 
 @Component
 public class GraphQLDataFetchers {
+  private final MongoClient client;
+  private final ClientSessionOptions clientSessionOptions;
   private final MongoCollection<Document> books;
 
   public GraphQLDataFetchers(@Autowired MongoClient client) {
+    this.client = client;
+    clientSessionOptions =
+        ClientSessionOptions.builder()
+            .causallyConsistent(true)
+            .defaultTransactionOptions(
+                TransactionOptions.builder()
+                    .readPreference(ReadPreference.primary())
+                    .readConcern(ReadConcern.MAJORITY)
+                    .writeConcern(WriteConcern.MAJORITY)
+                    .maxCommitTime(1L, TimeUnit.SECONDS)
+                    .build())
+            .build();
     MongoDatabase booksDatabase = client.getDatabase("books");
     this.books =
         booksDatabase
@@ -156,6 +178,26 @@ public class GraphQLDataFetchers {
                             "price", dataFetchingEnvironment.<Decimal128>getArgument("lessThan"))),
                     createProjectStage(dataFetchingEnvironment.getSelectionSet())))
             .into(new ArrayList<>());
+  }
+
+  DataFetcher<String> createBook() {
+    return dataFetchingEnvironment -> {
+      Map<String, ?> bookInput = dataFetchingEnvironment.getArgument("book");
+      try (ClientSession session = client.startSession(clientSessionOptions)) {
+        return session.withTransaction(
+            () -> {
+              InsertOneResult result =
+                  books.insertOne(
+                      session,
+                      new Document()
+                          .append("name", bookInput.get("name"))
+                          .append("publicationDate", bookInput.get("publicationDate"))
+                          .append("price", bookInput.get("price"))
+                          .append("pageCount", bookInput.get("pageCount")));
+              return result.getInsertedId().toString();
+            });
+      }
+    };
   }
 
   private Bson createProjectStage(DataFetchingFieldSelectionSet selectionSet) {

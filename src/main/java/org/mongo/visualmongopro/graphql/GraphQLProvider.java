@@ -68,6 +68,7 @@ public class GraphQLProvider {
         .type(
             newTypeWiring("Queryable")
                 .dataFetcher("booksByPrice", graphQLDataFetchers.getBooksByPriceDataFetcher()))
+        .type(newTypeWiring("Query").dataFetcher("createBook", graphQLDataFetchers.createBook()))
         .build();
   }
 }
