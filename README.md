@@ -31,7 +31,7 @@ Currently, the react frontend merges into backend/resources/static because its e
 
 The graphql entry point is at the URI path `/graphql` The GraphQL schema is in `src/main/resources/schema.graphqls`.
 
-The best way to interact with the GraphQL data services is with a dedicated HTTP client that is GraphQL-aware.  
+The best way to interact with the GraphQL data services is with a dedicated HTTP client that is GraphQL-aware.
 
 Three possibilities are:
 
