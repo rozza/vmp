@@ -18,7 +18,7 @@ public class MongoClientAppConfig {
   private final String uri;
 
   @Autowired
-  MongoClientAppConfig(@Value("#{systemEnvironment['MONGODB_URI']}") final String uri) {
+  MongoClientAppConfig(@Value("#{systemEnvironment['MONGODB_URI']}:mongodb://localhost") final String uri) {
     this.uri = uri;
   }
 
