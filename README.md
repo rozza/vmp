@@ -21,11 +21,10 @@ The main routes are configured by the spring framework
 
 Currently, the react frontend merges into backend/resources/static because its easier than running two web servers.
 
-### Continuous build
+### Continuous development
 
- * Start Gradle build as a continuous task: `./gradlew build --continuous`
- * Start Gradle bootRun task: ./gradlew run`
- * Start build the react stuff: `./gradlew frontendBuild` - it will reload
+ * Use the handy shell script: `./run.sh`
+ * To build the react stuff: `./gradlew frontendBuild`
 
 ### GraphQL
 
