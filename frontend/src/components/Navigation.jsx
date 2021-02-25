@@ -33,6 +33,12 @@ export default function Navigation() {
       <ListItemIcon>
         <ListAltIcon />
       </ListItemIcon>
+      <Link to="/collections"><ListItemText primary="Collections" /></Link>
+    </ListItem>
+    <ListItem button>
+      <ListItemIcon>
+        <ListAltIcon />
+      </ListItemIcon>
       <Link to="/forms"><ListItemText primary="Forms" /></Link>
     </ListItem>
     <ListItem button>

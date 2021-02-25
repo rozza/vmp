@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import clsx from 'clsx';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
 
 import { useStyles } from './styles';
-import Chart from './Chart';
-import Deposits from './Deposits';
-import Orders from './Orders';
+import Loader from './Loader';
+
+const Chart = React.lazy(() => import('./Chart'));
+const Deposits = React.lazy(() => import('./Deposits'));
+const Orders = React.lazy(() => import('./Orders'));
 
 export default function Home() {
 
@@ -17,12 +19,12 @@ export default function Home() {
   return (
   <Container maxWidth="xl" className={classes.container}>
   <Grid container spacing={3}>
+      <Suspense fallback={<Loader />}>
        <Grid item xs={12}>
           <Paper>
             <h4 className={classes.padded}>HOME PAGE COMING SOON....</h4>
           </Paper>
         </Grid>
-
       {/* Chart */}
       <Grid item xs={12} md={8} lg={9}>
         <Paper className={fixedHeightPaper}>
@@ -41,6 +43,7 @@ export default function Home() {
           <Orders />
         </Paper>
       </Grid>
+      </Suspense>
     </Grid>
     </Container>
   );

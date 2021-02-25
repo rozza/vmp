@@ -22,7 +22,7 @@ export default function Forms() {
   const classes = useStyles();
 
   return (
-    <Container maxWidth="false" className={classes.container}>
+    <Container maxWidth={false} className={classes.container}>
       <Grid container spacing={3} justify="center">
           <Grid item xs={12} md={8} lg={12}>
             <Paper elevation={3}>
