@@ -64,7 +64,7 @@ Response data:
 {"data":{"documentsByNamespace":["{\"_id\": \"6036e8aa2a49e477c255d410\", \"f\": \"v\"}","{\"_id\": \"6036e9b12a49e477c255d411\", \"fieldName\": \"fieldValue\"}"]}}
 ```
 
-#### Create an existing (by `_id`) document
+#### Replace an existing (by `_id`) document
 ```shell
 $ curl --location --request POST 'localhost:8080/graphql' \
 --header 'Content-Type: application/json' \
