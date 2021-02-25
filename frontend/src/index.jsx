@@ -14,6 +14,7 @@ import Container from '@material-ui/core/Container';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import BugReportIcon from '@material-ui/icons/BugReport';
+import Tooltip from '@material-ui/core/Tooltip';
 import {Route, HashRouter, Switch, Link} from 'react-router-dom';
 
 import { defaultStyles } from './components/styles';
@@ -24,6 +25,7 @@ import Copyright from './components/Copyright';
 
 const Home = React.lazy(() => import('./components/Home'));
 const GraphiQL = React.lazy(() => import('./components/GraphiQL'));
+const Swagger = React.lazy(() => import('./components/Swagger'));
 const MongoCollections = React.lazy(() => import( './components/graphql/MongoCollections'));
 const MongoCollection = React.lazy(() => import( './components/graphql/MongoCollection'));
 
@@ -56,11 +58,13 @@ function IndexPage() {
             Visual MongoDB Pro<Typography component="span" variant="h6" color="inherit" noWrap className={classes.title}>(totype)
             </Typography>
           </Typography>
-          <IconButton color="inherit" title="There are no bugs only features">
+          <Tooltip title="There are no bugs only possibilities" arrow>
+          <IconButton color="inherit">
             <Badge badgeContent={-1} color="secondary">
               <BugReportIcon />
             </Badge>
           </IconButton>
+          </Tooltip>
         </Toolbar>
       </AppBar>
       <HashRouter>
@@ -89,6 +93,7 @@ function IndexPage() {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/gui" component={GraphiQL} />
+              <Route path="/sui" component={Swagger} />
               <Route path="/collections" component={MongoCollections} />
               <Route path="/collection/:databaseName/:collectionName" component={MongoCollection} />
             </Switch>

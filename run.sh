@@ -1,5 +1,5 @@
 #!/bin/bash
 trap "./gradlew --stop" EXIT
 ./gradlew --stop
-./gradlew build --continuous --quiet &
+./gradlew build -xtest --continuous --quiet &
 ./gradlew run

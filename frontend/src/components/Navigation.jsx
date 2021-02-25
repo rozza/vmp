@@ -7,6 +7,7 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import ListAltIcon from '@material-ui/icons/ListAlt';
+import DescriptionIcon from '@material-ui/icons/Description';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
 import AssignmentIcon from '@material-ui/icons/Assignment';
@@ -25,21 +26,21 @@ export default function Navigation() {
     </ListItem>
     <ListItem button>
       <ListItemIcon>
-        <TrendingUpIcon />
-      </ListItemIcon>
-      <Link to="/gui"><ListItemText primary="GraphiQL UI" /></Link>
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
         <ListAltIcon />
       </ListItemIcon>
       <Link to="/collections"><ListItemText primary="Collections" /></Link>
     </ListItem>
     <ListItem button>
       <ListItemIcon>
-        <ListAltIcon />
+        <TrendingUpIcon />
       </ListItemIcon>
-      <Link to="/forms"><ListItemText primary="Forms" /></Link>
+      <Link to="/gui"><ListItemText primary="GraphiQL UI" /></Link>
+    </ListItem>
+    <ListItem button>
+      <ListItemIcon>
+        <DescriptionIcon />
+      </ListItemIcon>
+      <Link to="/sui"><ListItemText primary="Swagger" /></Link>
     </ListItem>
     <ListItem button>
       <ListItemIcon>

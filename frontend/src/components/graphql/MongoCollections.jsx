@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { useGraphQL } from 'graphql-react';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -11,19 +12,8 @@ import Paper from '@material-ui/core/Paper';
 import Loader from '../Loader';
 import { withStyles } from "@material-ui/core/styles";
 import { styles } from '../styles';
+import { reactOptions } from './reactOptions';
 
-// Any GraphQL API can be queried in components, where fetch options for the
-// URI, auth headers, etc. can be specified. The `useGraphQL` hook will do less
-// work for following renders if `fetchOptionsOverride` is defined outside the
-// component, or is memoized using the `React.useMemo` hook within the
-// component. Typically it’s exported in a config module for use throughout the
-// project. The default fetch options received by the override function are
-// tailored to the operation; usually the body is JSON but if there are files in
-// the variables it will be a `FormData` instance for a GraphQL multipart
-// request.
-function fetchOptionsOverride(options) {
-  options.url = 'http://localhost:8080/graphql';
-}
 
 // The query is just a string; no need to use `gql` from `graphql-tag`. The
 // special comment before the string allows editor syntax highlighting, Prettier
@@ -58,7 +48,7 @@ const CollectionsGraphQL = ({}) => {
     // The `useGraphQL` hook can be used for both queries and mutations.
   const { loading, cacheValue: { data, ...errors } = {} } = useGraphQL({
     operation,
-    fetchOptionsOverride: fetchOptionsOverride,
+    fetchOptionsOverride: reactOptions,
     loadOnMount: true,
     loadOnReload: true,
     loadOnReset: true,
@@ -77,6 +67,8 @@ const CollectionsGraphQL = ({}) => {
     setPage(0);
   };
 
+  const history = useHistory();
+
   return (
     <Paper className={classes.root}>
     {data && (
@@ -92,7 +84,8 @@ const CollectionsGraphQL = ({}) => {
           <TableBody>
             {data.collections.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
               return (
-                <TableRow hover role="checkbox" tabIndex={-1} key={row.databaseName + "." + row.collectionName}>
+                <TableRow hover={true} tabIndex={-1} key={row.databaseName + "." + row.collectionName} onClick={() => history.push
+                ("/collection/" + row.databaseName + "/" + row.collectionName)} style={{cursor:'pointer'}}>
                   <TableCell key="db">{row.databaseName}</TableCell>
                   <TableCell key="coll">{row.collectionName}</TableCell>
                 </TableRow>
