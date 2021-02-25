@@ -187,7 +187,11 @@ public class CollectionDataFetcher {
                     "}")
             ))
         ));
-    collectionMetadata.insertMany(scanCollectionMetadata(client));
+
+    List<Document> documents = scanCollectionMetadata(client);
+    if (!documents.isEmpty()) {
+      collectionMetadata.insertMany(documents);
+    }
   }
 
   private List<Document> scanCollectionMetadata(MongoClient client) {
