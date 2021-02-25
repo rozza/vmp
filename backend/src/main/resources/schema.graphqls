@@ -7,7 +7,9 @@ type Query {
   collections: [Collection]
   collectionsByDatabase(databaseName: String): [Collection]
   collectionByNamespace(databaseName: String, collectionName: String): Collection
+  documentsByNamespace(databaseName: String, collectionName: String, limit: Int): [String]
   createDocument(databaseName: String, collectionName: String, json: String): ObjectId
+  replaceDocument(databaseName: String, collectionName: String, json: String): ObjectId
 }
 
 type Collection {

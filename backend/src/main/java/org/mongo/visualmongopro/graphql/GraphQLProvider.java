@@ -82,7 +82,13 @@ public class GraphQLProvider {
         )
         .type(
             newTypeWiring("Query")
+                .dataFetcher("documentsByNamespace", collectionDataFetchers.getDocumentsByNamespaceDataFetcher()))
+        .type(
+            newTypeWiring("Query")
                 .dataFetcher("createDocument", collectionDataFetchers.createDocumentDataFetcher()))
+        .type(
+            newTypeWiring("Query")
+                .dataFetcher("replaceDocument", collectionDataFetchers.replaceDocumentDataFetcher()))
         .build();
   }
 }

@@ -53,6 +53,28 @@ Response data:
 {"data":{"createDocument":"6036eaafb1c773636b6e80f5"}}
 ```
 
+#### Read first `limit` documents ordered by `_id`
+```shell
+$ curl --location --request POST 'localhost:8080/graphql' \
+--header 'Content-Type: application/json' \
+--data-raw '{"query":"{documentsByNamespace(databaseName:\"vakoDB\", collectionName:\"vakoCollection\", limit:100)}","operationName":"","variables":{}}'
+```
+Response data:
+```json
+{"data":{"documentsByNamespace":["{\"_id\": \"6036e8aa2a49e477c255d410\", \"f\": \"v\"}","{\"_id\": \"6036e9b12a49e477c255d411\", \"fieldName\": \"fieldValue\"}"]}}
+```
+
+#### Create an existing (by `_id`) document
+```shell
+$ curl --location --request POST 'localhost:8080/graphql' \
+--header 'Content-Type: application/json' \
+--data-raw '{"query":"{replaceDocument(databaseName:\"vakoDB\", collectionName:\"vakoCollection\", json:\"{\\\"_id\\\":\\\"60380b6c5eae786f441000ff\\\", \\\"newField\\\":\\\"newValue\\\"}\")}","operationName":"","variables":{}}'
+```
+Response data:
+```json
+{"data":{"replaceDocument":"60380b6c5eae786f441000ff"}}
+```
+
 ### REST API
 
 #### Get all the JSON Schemas
