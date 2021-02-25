@@ -1,11 +1,13 @@
 scalar DateTime
 scalar Decimal128
+scalar ObjectId
 
 
 type Query {
   collections: [Collection]
   collectionsByDatabase(databaseName: String): [Collection]
   collectionByNamespace(databaseName: String, collectionName: String): Collection
+  createDocument(databaseName: String, collectionName: String, json: String): ObjectId
 }
 
 type Collection {

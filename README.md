@@ -42,7 +42,18 @@ Three possibilities are:
 The MongoDB connection string defaults to mongodb://localhost:27017 but can be overridden via the `MONGODB_URI` environment variable.
 See the `MongoClientAppConfig` class if you want to see how that's done or play around with alternatives.
 
-#### Why does my code reformat?
+#### Create a document
+```shell
+$ curl --location --request POST 'localhost:8080/graphql' \
+--header 'Content-Type: application/json' \
+--data-raw '{"query":"{createDocument(databaseName:\"vakoDB\", collectionName:\"vakoCollection\", json:\"{\\\"fieldName\\\":\\\"fieldValue\\\"}\")}","operationName":"","variables":{}}'
+```
+Response data:
+```json
+{"data":{"createDocument":"6036eaafb1c773636b6e80f5"}}
+```
+
+## Why does my code reformat?
 
 Uses [spotless](https://github.com/diffplug/spotless/tree/main/plugin-gradle) for auto linting of code.
 See the spotless config in the build.gradle.kts

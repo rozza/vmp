@@ -7,6 +7,7 @@ import java.net.URL;
 import javax.annotation.PostConstruct;
 
 import org.mongo.visualmongopro.graphql.scalars.Decimal128StringCoercing;
+import org.mongo.visualmongopro.graphql.scalars.ObjectIdStringCoercing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
@@ -61,6 +62,12 @@ public class GraphQLProvider {
                         + "supporting 34 decimal digits of significand and an exponent range * of -6143 to +6144")
                 .coercing(new Decimal128StringCoercing())
                 .build())
+        .scalar(
+            GraphQLScalarType.newScalar()
+                .name("ObjectId")
+                .description("https://docs.mongodb.com/manual/reference/bson-types/index.html#objectid")
+                .coercing(new ObjectIdStringCoercing())
+                .build())
         .type(
             newTypeWiring("Query")
                 .dataFetcher("collections", collectionDataFetchers.getCollectionsDataFetcher())
@@ -73,6 +80,9 @@ public class GraphQLProvider {
             newTypeWiring("Query")
                 .dataFetcher("collectionByNamespace", collectionDataFetchers.getCollectionsByNamespaceDataFetcher())
         )
+        .type(
+            newTypeWiring("Query")
+                .dataFetcher("createDocument", collectionDataFetchers.createDocumentDataFetcher()))
         .build();
   }
 }

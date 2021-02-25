@@ -17,6 +17,12 @@
 
 package org.mongo.visualmongopro.graphql;
 
+import com.mongodb.ClientSessionOptions;
+import com.mongodb.ReadConcern;
+import com.mongodb.ReadPreference;
+import com.mongodb.TransactionOptions;
+import com.mongodb.WriteConcern;
+import com.mongodb.client.ClientSession;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -31,6 +37,7 @@ import org.bson.codecs.BsonTypeClassMap;
 import org.bson.codecs.DocumentCodecProvider;
 import org.bson.codecs.configuration.CodecRegistries;
 import org.bson.conversions.Bson;
+import org.bson.types.ObjectId;
 import org.jetbrains.annotations.NotNull;
 import org.mongo.visualmongopro.graphql.codecs.OffsetDateTimeCodec;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +49,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import static com.mongodb.client.model.Filters.and;
@@ -53,6 +61,7 @@ import static java.util.Arrays.asList;
 public class CollectionDataFetcher {
   private final MongoCollection<Document> collectionMetadata;
   private final MongoClient client;
+  private final ClientSessionOptions clientSessionOptions;
 
   public CollectionDataFetcher(@Autowired MongoClient client) {
     this.client = client;
@@ -68,6 +77,17 @@ public class CollectionDataFetcher {
                             new BsonTypeClassMap(
                                 Map.of(BsonType.DATE_TIME, OffsetDateTime.class)))),
                     visualMongoDBProDatabase.getCodecRegistry()));
+    clientSessionOptions =
+        ClientSessionOptions.builder()
+            .causallyConsistent(true)
+            .defaultTransactionOptions(
+                TransactionOptions.builder()
+                    .readPreference(ReadPreference.primary())
+                    .readConcern(ReadConcern.MAJORITY)
+                    .writeConcern(WriteConcern.MAJORITY)
+                    .maxCommitTime(1L, TimeUnit.SECONDS)
+                    .build())
+            .build();
   }
 
   private static Document cleanType(String type) {
@@ -237,6 +257,17 @@ public class CollectionDataFetcher {
             eq("databaseName", dataFetchingEnvironment.<String>getArgument("databaseName")),
             eq("collectionName", dataFetchingEnvironment.<String>getArgument("collectionName"))))
             .first();
+  }
+
+  DataFetcher<ObjectId> createDocumentDataFetcher() {
+    return dataFetchingEnvironment -> {
+      try (ClientSession session = client.startSession(clientSessionOptions)) {
+        return session.withTransaction(() -> client.getDatabase(dataFetchingEnvironment.getArgument("databaseName"))
+              .getCollection(dataFetchingEnvironment.getArgument("collectionName"))
+              .insertOne(session, Document.parse(dataFetchingEnvironment.getArgument("json")))
+              .getInsertedId().asObjectId().getValue());
+      }
+    };
   }
 
   @NotNull
