@@ -24,6 +24,12 @@ plugins {
   id("io.spring.dependency-management") version "1.0.11.RELEASE"
 }
 
+java {
+  toolchain {
+    languageVersion.set(JavaLanguageVersion.of(14))
+  }
+}
+
 dependencies {
   implementation("org.mongodb:mongodb-driver-sync:4.2.1")
   implementation("org.mongodb:mongodb-driver-core:4.2.1")
