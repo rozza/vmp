@@ -3,7 +3,7 @@ import Form from "@rjsf/material-ui";
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import { useStyles } from './styles';
+import { defaultStyles } from './styles';
 
 const schema = {
   title: "Test form",
@@ -19,8 +19,7 @@ const schema = {
 };
 
 export default function Forms() {
-  const classes = useStyles();
-
+  const classes = defaultStyles();
   return (
     <Container maxWidth={false} className={classes.container}>
       <Grid container spacing={3} justify="center">

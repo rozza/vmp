@@ -16,8 +16,9 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import BugReportIcon from '@material-ui/icons/BugReport';
 import {Route, HashRouter, Switch, Link} from 'react-router-dom';
 
-import { useStyles } from './components/styles';
+import { defaultStyles } from './components/styles';
 import Loader from './components/Loader';
+import GraphQLProvider from './components/graphql/GraphQLProvider';
 import Navigation from './components/Navigation';
 import Copyright from './components/Copyright';
 
@@ -25,10 +26,10 @@ const Home = React.lazy(() => import('./components/Home'));
 const GraphiQL = React.lazy(() => import('./components/GraphiQL'));
 const Forms = React.lazy(() => import('./components/Forms'));
 const MongoCollections = React.lazy(() => import( './components/graphql/MongoCollections'));
-
+const MongoCollection = React.lazy(() => import( './components/graphql/MongoCollection'));
 
 function IndexPage() {
-  const classes = useStyles();
+  const classes = defaultStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -84,14 +85,17 @@ function IndexPage() {
         <div className={classes.appBarSpacer} />
         <Container maxWidth={false} className={classes.container}>
           <div>
+          <GraphQLProvider>
           <Suspense fallback={<Loader />}>
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/gui" component={GraphiQL} />
               <Route path="/forms" component={Forms} />
               <Route path="/collections" component={MongoCollections} />
+              <Route path="/collection/:databaseName/:collectionName" component={MongoCollection} />
             </Switch>
           </Suspense>
+          </GraphQLProvider>
           </div>
           <Box pt={4}>
             <Copyright />

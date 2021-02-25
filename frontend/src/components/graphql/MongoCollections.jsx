@@ -1,5 +1,5 @@
 import React from 'react';
-import { GraphQL, GraphQLProvider, useGraphQL } from 'graphql-react';
+import { useGraphQL } from 'graphql-react';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -9,7 +9,8 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Loader from '../Loader';
-import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from "@material-ui/core/styles";
+import { styles } from '../styles';
 
 // Any GraphQL API can be queried in components, where fetch options for the
 // URI, auth headers, etc. can be specified. The `useGraphQL` hook will do less
@@ -40,14 +41,6 @@ const query = /* GraphQL */ `
   }
 `;
 
-const useStyles = makeStyles({
-  root: {
-    width: '100%',
-  },
-  container: {
-    maxHeight: 440,
-  },
-});
 
 const CollectionsGraphQL = ({}) => {
 
@@ -71,7 +64,7 @@ const CollectionsGraphQL = ({}) => {
     loadOnReset: true,
   });
 
-  const classes = useStyles();
+  const classes = withStyles(styles);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -125,10 +118,7 @@ const CollectionsGraphQL = ({}) => {
 }
 
 export default function MongoCollections() {
-  const graphql = new GraphQL();
-return (
-  <GraphQLProvider graphql={graphql}>
+  return (
     <CollectionsGraphQL />
-  </GraphQLProvider>
-);
+  );
 };
