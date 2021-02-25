@@ -27,6 +27,7 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.MongoIterable;
+import com.mongodb.client.model.IndexOptions;
 import graphql.schema.DataFetcher;
 import org.bson.BsonArray;
 import org.bson.BsonDocument;
@@ -55,6 +56,8 @@ import java.util.stream.Collectors;
 import static com.mongodb.client.model.Filters.and;
 import static com.mongodb.client.model.Filters.empty;
 import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Indexes.ascending;
+import static com.mongodb.client.model.Indexes.compoundIndex;
 import static java.util.Arrays.asList;
 
 @Component
@@ -119,6 +122,7 @@ public class CollectionDataFetcher {
   @PostConstruct
   public void init() {
     collectionMetadata.drop();
+    collectionMetadata.createIndex(compoundIndex(ascending("databaseName", "collectionName")), new IndexOptions().unique(true));
     collectionMetadata.insertMany(
         asList(
             new Document(Map.of(

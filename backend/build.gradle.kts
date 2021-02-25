@@ -41,6 +41,7 @@ dependencies {
   implementation("com.google.guava:guava:26.0-jre")
   implementation("org.springframework.boot:spring-boot-starter-web")
   implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
+  implementation("io.springfox:springfox-boot-starter:3.0.0")
 
   runtimeOnly("org.springframework.boot:spring-boot-devtools")
   runtimeOnly("com.graphql-java-kickstart:graphiql-spring-boot-starter:7.0.1")

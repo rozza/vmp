@@ -53,6 +53,50 @@ Response data:
 {"data":{"createDocument":"6036eaafb1c773636b6e80f5"}}
 ```
 
+### REST API
+
+#### Get all the JSON Schemas
+
+```shell
+curl --location --request GET 'localhost:8080/api/json-schemas/'
+```
+
+Returns `List<Document>`.
+
+#### Get all the JSON Schemas for a specific DB
+
+```shell
+curl --location --request GET 'localhost:8080/api/json-schemas/sample_mflix'
+```
+
+Returns `List<Document>`.
+
+#### Get all the JSON Schemas for a specific DB & collection
+
+```shell
+curl --location --request GET 'localhost:8080/api/json-schemas/sample_mflix/movies'
+```
+
+Returns `Document`.
+
+#### Get docs
+
+Where 0 is the skip and 10 the limit (sort by _id by default)
+
+```shell
+curl --location --request GET 'http://localhost:8080/api/docs/sample_mflix/movies/0/10'
+```
+
+Returns `List<Document>`.
+
+### Swagger 3
+
+- Swagger 3 is already configured in this project in `SpringFoxConfig.java`.
+- The Swagger UI can be seen at [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html).
+- The Swagger API documentation 2.0 is at [http://localhost:8080/v2/api-docs](http://localhost:8080/v2/api-docs).
+- The Open API documentation 3.0.3 is at [http://localhost:8080/v3/api-docs](http://localhost:8080/v3/api-docs).
+- You can also try the entire REST API directly from the Swagger interface!
+
 ## Why does my code reformat?
 
 Uses [spotless](https://github.com/diffplug/spotless/tree/main/plugin-gradle) for auto linting of code.
