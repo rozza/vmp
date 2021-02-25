@@ -24,7 +24,6 @@ import Copyright from './components/Copyright';
 
 const Home = React.lazy(() => import('./components/Home'));
 const GraphiQL = React.lazy(() => import('./components/GraphiQL'));
-const Forms = React.lazy(() => import('./components/Forms'));
 const MongoCollections = React.lazy(() => import( './components/graphql/MongoCollections'));
 const MongoCollection = React.lazy(() => import( './components/graphql/MongoCollection'));
 
@@ -90,7 +89,6 @@ function IndexPage() {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/gui" component={GraphiQL} />
-              <Route path="/forms" component={Forms} />
               <Route path="/collections" component={MongoCollections} />
               <Route path="/collection/:databaseName/:collectionName" component={MongoCollection} />
             </Switch>

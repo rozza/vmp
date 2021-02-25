@@ -36,4 +36,5 @@ node_modules/
 backend/src/main/resources/static/*
 backend/src/main/resources/templates/*
 
-
+# jenv
+.java-version

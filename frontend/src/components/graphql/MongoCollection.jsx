@@ -8,19 +8,12 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import Loader from '../Loader';
-import { withStyles } from '@material-ui/core/styles';
-import { reactOptions } from './reactOptions';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useParams,
-  useRouteMatch
-} from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-import { styles } from '../styles';
+import Loader from '../Loader';
+import CollectionForm from '../forms/CollectionForm';
+import { reactOptions } from './reactOptions';
+import { defaultStyles } from '../styles';
 
 const CollectionGraphQL = ({databaseName, collectionName}) => {
 
@@ -55,19 +48,16 @@ const CollectionGraphQL = ({databaseName, collectionName}) => {
     loadOnReset: true
   });
 
-  const classes = withStyles(styles);
+  const classes = defaultStyles();
 
   console.log("DATA: ", data)
   return (
-    <Paper className={classes.root}>
-    <div>OKO</div>
+    <>
     {data && (
-      <>
-      <p>COOL</p>
-      </>
+      <CollectionForm jsonSchema={data.collectionByNamespace.jsonSchema} uiSchema={data.collectionByNamespace.uiSchema} />
       )}
     {loading && <Loader />}
-    </Paper>
+    </>
   );
 }
 
