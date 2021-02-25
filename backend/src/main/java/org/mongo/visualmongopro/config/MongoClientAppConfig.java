@@ -29,6 +29,7 @@ public class MongoClientAppConfig {
             .applicationName("Visual MongoDB Pro")
             .applyConnectionString(new ConnectionString(uri))
             .uuidRepresentation(UuidRepresentation.STANDARD)
+            .retryWrites(false)
             .build());
   }
 }
