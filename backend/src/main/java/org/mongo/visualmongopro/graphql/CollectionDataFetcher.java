@@ -193,7 +193,7 @@ public class CollectionDataFetcher {
   private List<Document> scanCollectionMetadata(MongoClient client) {
     List<Document> databases = client.listDatabases().into(new ArrayList<>());
     List<String> dbs = databases.stream().filter(db -> {
-      List<String> admin_dbs = Arrays.asList("admin", "config", "local");
+      List<String> admin_dbs = Arrays.asList("admin", "config", "local", "visualmongodbpro");
       return !admin_dbs.contains(db.getString("name"));
     }).map(doc -> doc.getString("name")).collect(Collectors.toList());
 

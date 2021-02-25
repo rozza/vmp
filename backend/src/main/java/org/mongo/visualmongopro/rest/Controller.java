@@ -48,6 +48,18 @@ public class Controller {
     return docRepository.getDocs(db, coll, skip, limit);
   }
 
+  @GetMapping("mdb/dbs")
+  @ResponseStatus(HttpStatus.OK)
+  public List<String> getDBs() {
+    return docRepository.getAllDatabases();
+  }
+
+  @GetMapping("mdb/collections/{db}")
+  @ResponseStatus(HttpStatus.OK)
+  public List<String> getCollections(@PathVariable String db) {
+    return docRepository.getAllCollections(db);
+  }
+
   @ExceptionHandler(RuntimeException.class)
   @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
   public final Exception handleAllExceptions(RuntimeException e) {

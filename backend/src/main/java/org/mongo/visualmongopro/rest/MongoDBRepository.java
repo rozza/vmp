@@ -7,7 +7,9 @@ import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.mongodb.client.model.Filters.and;
 import static com.mongodb.client.model.Filters.eq;
@@ -47,5 +49,16 @@ public class MongoDBRepository implements DocRepository {
   @Override
   public List<Document> getDocs(final String db, final String coll, final int skip, final int limit) {
     return client.getDatabase(db).getCollection(coll).find().sort(ascending("_id")).skip(skip).limit(limit).into(new ArrayList<>());
+  }
+
+  @Override
+  public List<String> getAllDatabases() {
+    List<String> admin_dbs = Arrays.asList("admin", "config", "local", "visualmongodbpro");
+    return client.listDatabases().map(db -> db.getString("name")).into(new ArrayList<>()).stream().filter(s -> !admin_dbs.contains(s)).collect(Collectors.toList());
+  }
+
+  @Override
+  public List<String> getAllCollections(final String db) {
+    return client.getDatabase(db).listCollectionNames().into(new ArrayList<>());
   }
 }

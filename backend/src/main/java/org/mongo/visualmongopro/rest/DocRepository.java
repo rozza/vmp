@@ -14,4 +14,8 @@ public interface DocRepository {
   Document getAllJsonSchemasByDatabaseAndCollection(String db, String coll);
 
   List<Document> getDocs(String db, String coll, int skip, int limit);
+
+  List<String> getAllDatabases();
+
+  List<String> getAllCollections(String db);
 }
