@@ -129,7 +129,7 @@ export default function Home() {
            </Grid>
          </Grid>
       </Paper>
-      <Paper className={classes.paper} style={{height: '260px'}}/>
+      <Paper className={classes.paper} style={{height: '65px'}}/>
   </Grid>
 
   <Grid item xs={6}>
@@ -153,15 +153,6 @@ export default function Home() {
         </Grid>
       </Grid>
    </Paper>
-      <Paper className={classes.paper}>
-         <Grid container spacing={4}>
-           <Grid item />
-           <Grid item />
-           <Grid item style={{'margin': 'auto'}}>
-               <img src="/assets/meme2.png" />
-           </Grid>
-         </Grid>
-      </Paper>
          <Paper className={classes.paper}>
             <Grid container spacing={4}>
               <Grid item />
@@ -171,6 +162,19 @@ export default function Home() {
               </Grid>
             </Grid>
          </Paper>
+  </Grid>
+
+  <Grid item xs={12}>
+
+     <Paper className={classes.paper}>
+         <Grid container spacing={4}>
+          <Grid item />
+          <Grid item />
+          <Grid item style={{'margin': 'auto'}}>
+              <img src="/assets/teammeme.png" />
+          </Grid>
+        </Grid>
+     </Paper>
   </Grid>
 
   </Grid>
