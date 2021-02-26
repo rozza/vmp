@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
 
 const resources = path.resolve(__dirname, '../backend/src/main/resources');
 
@@ -32,6 +33,10 @@ module.exports = (env, argv) => ({
       hash: true,
       template: './src/index.html',
       filename: path.join(resources, 'templates', 'index.html')
-    })
+    }),
+    new CopyPlugin({
+        patterns: [
+          { from: "./src/favicon.ico", to: path.join(resources, 'static', 'favicon.ico') },
+    ]}),
   ]
 });
