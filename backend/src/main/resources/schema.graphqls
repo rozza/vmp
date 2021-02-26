@@ -13,6 +13,7 @@ type Query {
 }
 
 type Collection {
+  _id: ObjectId
   databaseName: String,
   collectionName: String
   jsonSchema: String
