@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import java.util.Properties;
+
 plugins {
   // Apply the java plugin to add support for Java
   java
@@ -29,6 +31,24 @@ java {
     languageVersion.set(JavaLanguageVersion.of(14))
   }
 }
+
+tasks.withType<JavaExec> {
+  // Support local properties
+  val properties = Properties()
+  if (rootProject.file("local.properties").exists()) {
+    properties.load(rootProject.file("local.properties").inputStream())
+  }
+
+  for (property in properties) {
+    systemProperty(property.key.toString(), property.value)
+  }
+
+  for (property in properties) {
+    environment(property.key.toString(), property.value)
+  }
+
+}
+
 
 dependencies {
   implementation("org.mongodb:mongodb-driver-sync:4.2.1")
@@ -58,5 +78,4 @@ val test by tasks.getting(Test::class) {
   // Use junit platform for unit tests
   useJUnitPlatform()
 }
-
 

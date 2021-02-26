@@ -49,6 +49,9 @@ import org.bson.json.JsonWriterSettings;
 import org.bson.types.ObjectId;
 import org.jetbrains.annotations.NotNull;
 import org.mongo.visualmongopro.graphql.codecs.OffsetDateTimeCodec;
+import org.mongo.visualmongopro.rest.Controller;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -72,6 +75,8 @@ import static java.util.Arrays.asList;
 
 @Component
 public class CollectionDataFetcher {
+
+  private final static Logger LOGGER = LoggerFactory.getLogger(CollectionDataFetcher.class);
   private static final FindOneAndReplaceOptions replaceDocumentOptions = new FindOneAndReplaceOptions()
       .upsert(false)
       .returnDocument(ReturnDocument.AFTER)
@@ -134,6 +139,10 @@ public class CollectionDataFetcher {
 
   @PostConstruct
   public void init() {
+    if (!Boolean.parseBoolean(System.getProperty("CREATE_METADATA_COLLECTION", "true"))) {
+      LOGGER.info("Skipping creating metadata collection");
+      return;
+    }
     collectionMetadata.drop();
     collectionMetadata.createIndex(compoundIndex(ascending("databaseName", "collectionName")), new IndexOptions().unique(true));
     collectionMetadata.insertMany(
