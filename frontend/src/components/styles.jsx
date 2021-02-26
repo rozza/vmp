@@ -78,12 +78,27 @@ export const styles = (theme) => ({
      overflow: 'auto',
      flexDirection: 'column',
    },
+   homePaper: {
+       margin: `${theme.spacing(3)}px auto`,
+       padding: theme.spacing(2),
+     },
+   avatarGridItem: {
+     padding: theme.spacing(4),
+   },
+   largeAvatar: {
+      marginLeft: theme.spacing(20),
+       width: theme.spacing(300),
+       height: theme.spacing(10),
+   },
    fixedHeight: {
-     height: 240,
+     height: 340,
    },
    padded: {
      padding: theme.spacing(4),
    },
+   paddedLeft: {
+    paddingLeft: theme.spacing(3),
+   }
 });
 
 export const defaultStyles = makeStyles(styles);

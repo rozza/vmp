@@ -36,7 +36,7 @@ module.exports = (env, argv) => ({
     }),
     new CopyPlugin({
         patterns: [
-          { from: "./src/favicon.ico", to: path.join(resources, 'static', 'favicon.ico') },
+          { from: "./src/assets", to: path.join(resources, 'static/assets') },
     ]}),
   ]
 });

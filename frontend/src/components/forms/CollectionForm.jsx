@@ -22,7 +22,6 @@ export default function Forms({data}) {
         return response.json();
       })
       .then(function(myJson) {
-        console.log(myJson)
         setCollectionData([{}].concat(myJson))
       });
   }

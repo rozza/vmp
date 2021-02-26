@@ -56,7 +56,7 @@ function IndexPage() {
           </IconButton>
           <Typography component="h1" variant="h4" color="inherit" noWrap className={classes.title}>
             Visual MongoDB Pro<Typography component="span" variant="h6" color="inherit" noWrap className={classes.title}>(totype)
-            </Typography>
+          </Typography>
           </Typography>
           <Tooltip title="There are no bugs only possibilities" arrow>
           <IconButton color="inherit">
