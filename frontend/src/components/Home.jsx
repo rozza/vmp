@@ -31,22 +31,21 @@ export default function Home() {
   <Grid container
     direction="row"
     justify="center"
-    alignItems="center"
+    alignItems="top"
     spacing={3}
   >
-    <Grid item xs={12}>
+    <Grid item xs={6}>
        <Paper className={classes.paper}>
           <Grid container spacing={4}>
-          <Grid item />
-           <Grid item />
+            <Grid item />
+            <Grid item />
             <Grid item >
               <Typography variant="h3" component="h2">Tech Stack</Typography>
               <Typography>100% Hackfest compliant</Typography>
             </Grid>
           </Grid>
        </Paper>
-    </Grid>
-    <Grid item xs={12}>
+
        <Paper className={classes.paper}>
           <Grid container wrap="nowrap" spacing={4}>
            <Grid item />
@@ -58,9 +57,7 @@ export default function Home() {
             </Grid>
           </Grid>
        </Paper>
-    </Grid>
 
-   <Grid item xs={12}>
     <Paper className={classes.paper}>
        <Grid container wrap="nowrap" spacing={4}>
         <Grid item />
@@ -72,9 +69,7 @@ export default function Home() {
          </Grid>
        </Grid>
     </Paper>
-  </Grid>
 
-     <Grid item xs={12}>
       <Paper className={classes.paper}>
          <Grid container wrap="nowrap" spacing={4}>
           <Grid item />
@@ -86,9 +81,7 @@ export default function Home() {
            </Grid>
          </Grid>
       </Paper>
-    </Grid>
 
-   <Grid item xs={12}>
     <Paper className={classes.paper}>
        <Grid container wrap="nowrap" spacing={4}>
         <Grid item />
@@ -100,23 +93,7 @@ export default function Home() {
          </Grid>
        </Grid>
     </Paper>
-  </Grid>
 
-   <Grid item xs={12}>
-      <Paper className={classes.paper}>
-         <Grid container wrap="nowrap" spacing={4}>
-          <Grid item />
-          <Grid item>
-              <Avatar src="/assets/react.svg" className={classes.largeAvatar} />
-           </Grid>
-           <Grid item >
-             <Typography variant="h5" component="strong" >React</Typography>
-           </Grid>
-         </Grid>
-      </Paper>
-    </Grid>
-
-    <Grid item xs={12}>
       <Paper className={classes.paper}>
          <Grid container wrap="nowrap" spacing={4}>
           <Grid item />
@@ -128,7 +105,74 @@ export default function Home() {
            </Grid>
          </Grid>
       </Paper>
-    </Grid>
+
+      <Paper className={classes.paper}>
+         <Grid container wrap="nowrap" spacing={4}>
+          <Grid item />
+          <Grid item>
+              <Avatar src="/assets/rest.png" className={classes.largeAvatar} />
+           </Grid>
+           <Grid item >
+             <Typography variant="h5" component="strong" >REST</Typography>
+           </Grid>
+         </Grid>
+      </Paper>
+
+      <Paper className={classes.paper}>
+         <Grid container wrap="nowrap" spacing={4}>
+          <Grid item />
+          <Grid item>
+              <Avatar src="/assets/react.svg" className={classes.largeAvatar} />
+           </Grid>
+           <Grid item >
+             <Typography variant="h5" component="strong" >React</Typography>
+           </Grid>
+         </Grid>
+      </Paper>
+      <Paper className={classes.paper} style={{height: '260px'}}/>
+  </Grid>
+
+  <Grid item xs={6}>
+
+   <Paper className={classes.paper}>
+      <Grid container spacing={4}>
+        <Grid item />
+        <Grid item />
+        <Grid item >
+          <Typography variant="h3" component="h2">Requisite Memes</Typography>
+          <Typography>For hackfest compliance</Typography>
+        </Grid>
+      </Grid>
+   </Paper>
+   <Paper className={classes.paper}>
+      <Grid container spacing={4}>
+        <Grid item />
+        <Grid item />
+        <Grid item style={{'margin': 'auto'}}>
+            <img src="/assets/meme1.png" />
+        </Grid>
+      </Grid>
+   </Paper>
+      <Paper className={classes.paper}>
+         <Grid container spacing={4}>
+           <Grid item />
+           <Grid item />
+           <Grid item style={{'margin': 'auto'}}>
+               <img src="/assets/meme2.png" />
+           </Grid>
+         </Grid>
+      </Paper>
+         <Paper className={classes.paper}>
+            <Grid container spacing={4}>
+              <Grid item />
+              <Grid item />
+              <Grid item style={{'margin': 'auto'}}>
+                  <img src="/assets/meme3.png" />
+              </Grid>
+            </Grid>
+         </Paper>
+  </Grid>
+
   </Grid>
   </Container>
   </>

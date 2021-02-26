@@ -96,9 +96,6 @@ export const styles = (theme) => ({
    padded: {
      padding: theme.spacing(4),
    },
-   paddedLeft: {
-    paddingLeft: theme.spacing(3),
-   }
 });
 
 export const defaultStyles = makeStyles(styles);
