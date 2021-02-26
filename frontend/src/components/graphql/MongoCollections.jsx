@@ -8,6 +8,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Loader from '../Loader';
 import { withStyles } from "@material-ui/core/styles";
@@ -70,7 +72,10 @@ const CollectionsGraphQL = ({}) => {
   const history = useHistory();
 
   return (
-    <Paper className={classes.root}>
+  <Container maxWidth={false} className={classes.container}>
+    <Grid container spacing={3} justify="center">
+        <Grid item xs={12} md={8} lg={12}>
+          <Paper elevation={3}>
     {data && (
       <>
       <TableContainer className={classes.container}>
@@ -106,7 +111,10 @@ const CollectionsGraphQL = ({}) => {
       </>
       )}
     {loading && <Loader />}
-    </Paper>
+        </Paper>
+     </Grid>
+    </Grid>
+  </Container>
   );
 }
 

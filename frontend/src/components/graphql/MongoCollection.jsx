@@ -2,12 +2,18 @@ import React from 'react';
 import { GraphQL, GraphQLProvider, useGraphQL } from 'graphql-react';
 import { useParams } from "react-router-dom";
 
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+
 import Loader from '../Loader';
-import CollectionForm from '../forms/CollectionForm';
 import { reactOptions } from './reactOptions';
+import CollectionForm from '../forms/CollectionForm';
+import { defaultStyles } from '../styles';
 
 const CollectionGraphQL = ({databaseName, collectionName}) => {
 
+  const classes = defaultStyles();
   const query = `
     {
       collectionByNamespace(databaseName: "${databaseName}", collectionName: "${collectionName}") {
@@ -42,12 +48,16 @@ const CollectionGraphQL = ({databaseName, collectionName}) => {
   });
 
   return (
-    <>
-    {data && (
-      <CollectionForm data={data.collectionByNamespace} />
-      )}
-    {loading && <Loader />}
-    </>
+  <Container maxWidth={false} className={classes.container}>
+    <Grid container spacing={3} justify="center">
+        <Grid item xs={12} md={8} lg={12}>
+          <Paper elevation={3}>
+          {data && ( <CollectionForm data={data.collectionByNamespace} /> )}
+          {loading && <Loader />}
+        </Paper>
+     </Grid>
+    </Grid>
+  </Container>
   );
 }
 

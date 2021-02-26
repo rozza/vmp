@@ -69,8 +69,8 @@ export const styles = (theme) => ({
      overflow: 'auto',
    },
    container: {
-     paddingTop: theme.spacing(4),
-     paddingBottom: theme.spacing(4),
+     paddingTop: theme.spacing(1),
+     paddingBottom: theme.spacing(10),
    },
    paper: {
      padding: theme.spacing(2),

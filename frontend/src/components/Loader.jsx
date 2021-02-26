@@ -15,6 +15,7 @@ export default React.memo(styled(({ className }) => (
   height: 100%;
   justify-content: center;
   align-items: center;
+  padding: 30px;
 
   span.loader__ball {
     display: inline-block;
