@@ -26,6 +26,15 @@ Currently, the react frontend merges into backend/resources/static because its e
  * Use the handy shell script: `./run.sh`
  * To build the react stuff: `./gradlew frontendBuild`
 
+### Configuring your dev environment:
+
+Add a `local.properties` file to make local configurations
+```shell
+# Local properties
+MONGODB_URI=mongodb://localhost:27017
+CREATE_METADATA_COLLECTION=true
+```
+
 ### GraphQL
 
 The graphql entry point is at the URI path `/graphql` The GraphQL schema is in `src/main/resources/schema.graphqls`.
